@@ -19,7 +19,7 @@ function getWorkingHrs(){
 			empHrs=8
 			;;
                 $is_Part_Time)
-                        empHrs=8
+                        empHrs=4
 			;;
 		*)
 			empHrs=0
@@ -27,13 +27,17 @@ function getWorkingHrs(){
 	esac
 }
 
+count=0
 
 while [[ $totalEmpHr -lt $max_Working_Hr && $totalWorkingDays -lt $Num_Working_Days ]]
 do
 	((totalWorkingDays++))
 	getWorkingHrs $((RANDOM%3))
-
+	dailyWage[((count++))]=$(($empHrs*$emp_Rate_Per_Hr))
 	totalEmpHr=$(($totalEmpHr+$empHrs))
 
 done
+
+echo " Daily Salary of Employee is :: "${dailyWage[@]}
+
 echo " Employee salary for a month is "$(($totalEmpHr*$emp_Rate_Per_Hr))
