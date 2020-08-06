@@ -38,6 +38,24 @@ do
 
 done
 
-echo " Daily Salary of Employee is :: "${dailyWage[@]}
-
 echo " Employee salary for a month is "$(($totalEmpHr*$emp_Rate_Per_Hr))
+
+for i in ${!dailyWage[@]}
+do
+	echo " Salary of Day "$(($i+1))" is "${dailyWage[$i]}
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
