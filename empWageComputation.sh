@@ -2,26 +2,37 @@
 
 echo " Welcome to Employee Wage Computation program on Master Branch "
 
-isPartTime=1
-isFullTime=2
-totalSalry=0
-empRatePerHr=20
-NumWorkingDays=20
+is_Part_Time=1
+is_Full_Time=2
+total_Salry=0
+emp_Rate_Per_Hr=20
+Num_Working_Days=20
+max_Working_Hr=100
 
-for (( day=1; day<=$NumWorkingDays; day++))
+totalEmpHr=0
+totalWorkingDays=0
+
+function getWorkingHrs(){
+	case $1 in
+		$is_Full_Time)
+			empHrs=8
+			;;
+                $is_Part_Time)
+                        empHrs=8
+			;;
+		*)
+			empHrs=0
+			;;
+	esac
+}
+
+
+while [[ $totalEmpHr -lt $max_Working_Hr && $totalWorkingDays -lt $Num_Working_Days ]]
 do
-	randomCheck=$((RANDOM%3))
+	((totalWorkingDays++))
+	getWorkingHrs $((RANDOM%3))
 
-	if [ $isFullTime -eq $randomCheck ]
-	then
-		empHrs=8
-	elif [ $isPartTime -eq $randomCheck ]
-	then
-		empHrs=4
-	else
-		empHrs=0
-	fi
-	sal=$(($empHrs*$empRatePerHr))
-	totalSalary=$(($totalSalary+$sal))
+	totalEmpHr=$(($totalEmpHr+$empHrs))
+
 done
-echo " Employee salary for a month is "$(($totalSalary))
+echo " Employee salary for a month is "$(($totalEmpHr*$emp_Rate_Per_Hr))
