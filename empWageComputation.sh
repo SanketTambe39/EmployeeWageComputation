@@ -5,6 +5,7 @@ echo " Welcome to Employee Wage Computation program on Master Branch "
 is_Part_Time=1
 is_Full_Time=2
 total_Salry=0
+
 emp_Rate_Per_Hr=20
 Num_Working_Days=20
 max_Working_Hr=100
