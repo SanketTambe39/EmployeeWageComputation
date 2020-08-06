@@ -2,17 +2,19 @@
 
 echo " Welcome to Employee Wage Computation program on Master Branch "
 
-isPresent=1
-randomCheck=$((RANDOM%2))
+isPartTime=1
+isFullTime=2
+empRatePerHr=20
+randomCheck=$((RANDOM%3))
 
-if [ $isPresent -eq $randomCheck ]
+if [ $isFullTime -eq $randomCheck ]
 then
-	empRatePerHr=20
 	empHrs=8
-	salary=$(($empHrs*$empRatePerHr))
-	echo "Emplyee is present So his Daily salary is ::"$salary
+elif [ $isPartTime -eq $randomCheck ]
+then
+	empHrs=4
 else
-	salary=0
-	echo " Employee is Absent so no salary "
+	empHrs=0
 fi
 
+echo " Salary of Employee is "$(($empHrs*$empRatePerHr))
